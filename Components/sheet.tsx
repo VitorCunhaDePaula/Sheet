@@ -462,19 +462,19 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="font-medium text-gray-700 bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
+                className="font-medium text-black text-[15px] bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
                 placeholder="Product title"
               />
               <input
                 type="text"
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
-                className="text-sm text-gray-500 bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
+                className="text-[14px] font-normal text-[#6A7282] bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
                 placeholder="Product subtitle"
               />
             </div>
             <div className="sm:ml-4">
-              <p className="font-semibold text-gray-900">
+              <p className="font-semibold text-[16px]">
                 {currency === "BRL"
                   ? "R$"
                   : currency === "USD"
@@ -491,7 +491,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
 
           <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6">
             <div className="mb-3">
-              <h3 className="text-sm font-medium text-gray-700">
+              <h3 className="text-sm font-medium text-[14px]">
                 Product description
               </h3>
             </div>
@@ -583,8 +583,10 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                   />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">Paid</h4>
-                  <p className="text-sm text-gray-600">
+                  <h4 className="font-medium text-gray-900 text-[14px]">
+                    Paid
+                  </h4>
+                  <p className="text-normal text-[14px] text-gray-600">
                     Charge for access to your product.
                   </p>
                 </div>
@@ -609,8 +611,10 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                   />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">Free</h4>
-                  <p className="text-sm text-gray-500">
+                  <h4 className="font-medium text-gray-900 text-[14px]">
+                    Free
+                  </h4>
+                  <p className="text-sm text-gray-500 text-[14px]">
                     Offering free access to your product.
                   </p>
                 </div>
@@ -630,7 +634,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                 </p>
               </div>
               <Link href={"https://www.google.com/"} className="cursor-pointer">
-                <button className="px-4 py-2 bg-amber-100 text-amber-800 rounded text-sm font-medium cursor-pointer">
+                <button className="px-4 py-2 bg-amber-100 text-amber-800 rounded text-sm font-normal text-[13px] cursor-pointer">
                   Setup
                 </button>
               </Link>
@@ -642,13 +646,13 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
               <div className="space-y-2">
                 <label
                   htmlFor="price"
-                  className="block text-sm font-medium text-gray-900"
+                  className="block text-sm font-medium text-[14px] text-gray-900"
                 >
                   Price
                 </label>
                 <div className="mt-2">
                   <div className="flex items-center rounded-md bg-white pl-3 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-                    <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm">
+                    <div className="shrink-0 text-base text-gray-500 select-none font-normal text-[14px]">
                       {currency === "BRL"
                         ? "R$"
                         : currency === "USD"
@@ -700,12 +704,15 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                   </div>
                 </div>
               </div>
+              <p className="text-[13px] text-[#6A7282] mt-2">
+                Specify the product price and accepted payment currency.
+              </p>
             </div>
           )}
 
           <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6">
             <div className="mb-3">
-              <h4 className="text-sm font-medium text-gray-700">Product</h4>
+              <h4 className="text-[14px] font-medium text-gray-700">Product</h4>
             </div>
 
             <div
@@ -782,7 +789,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                       } top-0.5`}
                     />
                   </button>
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-[14px] font-medium text-gray-900">
                     Order Bump
                   </span>
                 </div>
