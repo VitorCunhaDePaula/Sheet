@@ -550,12 +550,6 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                     <Video className="w-4 h-4" />
                   </button>
                 </div>
-
-                <button className="px-2 sm:px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs sm:text-sm font-medium flex items-center gap-2 shadow-sm">
-                  <span className="text-sm">✨</span>
-                  <span className="hidden sm:inline">Generate with AI</span>
-                  <span className="sm:hidden">AI</span>
-                </button>
               </div>
 
               <div className="p-4 min-h-[120px] bg-white">
