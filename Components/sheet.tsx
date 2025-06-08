@@ -495,7 +495,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                       type="checkbox"
                       checked={isPaid}
                       onChange={() => setIsPaid(true)}
-                      className="w-4 h-4 text-blue-600 rounded-sm"
+                      className="w-4 h-4 text-blue-600 rounded-full"
                     />
                   </div>
                 </div>
@@ -662,11 +662,11 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
               {uploadedFiles && (
                 <div className="pb-[8px]">
                   <div className="w-full">
-                    <ul className="w-full">
+                    <ul className="w-full mt-2">
                       {uploadedFiles.map((file) => (
                         <li
                           key={file.id}
-                          className="w-full flex items-center justify-between py-4 px-4 text-sm border-b divide-y divide-gray-100 rounded-md border border-gray-200"
+                          className="w-full flex items-center justify-between py-4 px-4 text-sm border-b divide-y divide-gray-100 rounded-md border border-gray-200 h-[56px]"
                         >
                           <div className="flex items-center flex-1 min-w-0">
                             <svg
@@ -933,19 +933,19 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                           <label className="block text-sm font-medium text-gray-700 py-[8px]">
                             Product
                           </label>
-                          <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                          <div
+                            className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 cursor-pointer"
+                            onClick={() => {
+                              const input = document.getElementById(
+                                `file-${bump.id}`
+                              ) as HTMLInputElement;
+                              input?.click();
+                            }}
+                          >
                             <div className="text-center">
                               <Upload className="mx-auto h-8 w-8 text-gray-300" />
                               <div className="mt-2 flex text-sm leading-6 text-gray-600">
-                                <label
-                                  className="relative cursor-pointer rounded-md  focus-within:outline-none "
-                                  onClick={() => {
-                                    const input = document.getElementById(
-                                      `file-${bump.id}`
-                                    ) as HTMLInputElement;
-                                    input?.click();
-                                  }}
-                                >
+                                <label className="relative cursor-pointer rounded-md  focus-within:outline-none ">
                                   <span className="font-medium text-[14px] text-[#2563EB]">
                                     Upload a file
                                   </span>
@@ -973,9 +973,9 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                             <div className="mt-4">
                               <ul
                                 role="list"
-                                className="divide-y divide-gray-100 rounded-md border border-gray-200"
+                                className="divide-y divide-gray-100 rounded-md border mt-2 border-gray-200"
                               >
-                                <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
+                                <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6 h-[56px]">
                                   <div className="flex w-0 flex-1 items-center">
                                     <svg
                                       className="size-5 shrink-0 text-gray-400"
