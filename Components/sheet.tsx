@@ -47,7 +47,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
   // Adicione o estilo aqui, logo após a declaração da função
 
   const [isPaid, setIsPaid] = useState(true);
-  const [price, setPrice] = useState("0.00");
+  const [price, setPrice] = useState("0");
   const [currency, setCurrency] = useState("USD");
   const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -342,9 +342,9 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
           isAnimating ? "translate-x-0" : "translate-x-full"
         } overflow-hidden`}
       >
-        <div className="h-full overflow-y-auto scrollbar-container">
-          <div className="sticky top-0 z-10 bg-white flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-100">
-            <h2 className="text-lg font-semibold text-gray-900">
+        <div className="h-full overflow-y-auto scrollbar-container w-full">
+          <div className="sticky top-1 z-10 bg-white flex items-center justify-between px-4 sm:px-6  border-b border-gray-100">
+            <h2 className="text-[16px] font-semibold text-gray-900">
               Digital Product
             </h2>
 
@@ -358,11 +358,11 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
             </button>
           </div>
 
-          <div className="p-4 sm:p-6 space-y-6">
+          <div className="p-4 sm:p-6 ">
             <div
               className={`border ${
                 selectedImage ? "border-solid" : "border-dashed"
-              } border-gray-300 rounded-xl h-[200px] flex items-center justify-center bg-white cursor-pointer hover:border-gray-400 transition-colors relative overflow-hidden`}
+              } border-gray-300 rounded-xl h-[176px] flex items-center justify-center bg-white cursor-pointer hover:border-gray-400 transition-colors relative overflow-hidden`}
               onClick={handleImageClick}
               onMouseEnter={() => setIsImageHovered(true)}
               onMouseLeave={() => setIsImageHovered(false)}
@@ -381,18 +381,18 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                           e.stopPropagation();
                           handleEditImage();
                         }}
-                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors"
+                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors border border-[#D1D5DC]"
                       >
-                        <Edit3 className="w-4 h-4 text-gray-700" />
+                        <Edit3 className="w-[18px] h-[18px] text-black " />
                       </button>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteImage();
                         }}
-                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors"
+                        className="p-2 bg-white rounded-full hover:bg-gray-100 transition-colors border border-[#D1D5DC]"
                       >
-                        <Trash2 className="w-4 h-4 text-black" />
+                        <Trash className="w-[18px] h-[18px] text-black" />
                       </button>
                     </div>
                   )}
@@ -424,43 +424,52 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                 className="hidden"
               />
             </div>
-
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center ">
-              <div className="flex-1  pt-[15px]">
+            <div>
+              <div className="relative mt-2 ">
                 <input
                   type="text"
+                  name="name"
+                  id="name"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="font-medium text-black text-[15px]  bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
+                  className="rounded-[6px] w-[80%] font-medium text-[15px] text-[#101828]  placeholder:w-[80%] hover:w-[80%] placeholder:text-[15px] placeholder:font-normal placeholder:text-[#6A7282] focus:bg-[#E6E6E8] focus:outline-none  h-[32px] hover:border-none hover:bg-[#E6E6E8]"
                   placeholder="Product title"
+                  maxLength={40}
                 />
+                <div
+                  className="absolute inset-x-0 bottom-0 peer-focus:border-t-2  "
+                  aria-hidden="true"
+                ></div>
                 <input
                   type="text"
+                  name="name"
+                  id="name"
                   value={subtitle}
                   onChange={(e) => setSubtitle(e.target.value)}
-                  className="text-[14px] pb-[15px] font-normal text-[#6A7282] bg-transparent border-none outline-none focus:bg-gray-50 rounded px-1 py-0.5 w-full"
-                  placeholder="Product subtitle"
+                  maxLength={60}
+                  className="mb-2 rounded-[6px] block w-[80%] text-[#101828] font-medium text-[14px] placeholder:text-[14px] placeholder:w-[80%] hover:w-[80%] placeholder:font-normal placeholder:text-[#6A7282] focus:bg-[#E6E6E8]  py-1.5  placeholder:[#99A1AF] focus:outline-none  h-[32px] hover:border-none hover:bg-[#E6E6E8]"
+                  placeholder="Product Subtitle"
                 />
-              </div>
-              <div className="sm:ml-4">
-                <p className="font-semibold text-[16px]">
-                  {currency === "BRL"
-                    ? "R$"
-                    : currency === "USD"
-                    ? "US$"
-                    : currency === "CAD"
-                    ? "C$"
-                    : currency === "EUR"
-                    ? "€"
-                    : "$"}{" "}
-                  {Number.parseFloat(price || "0").toFixed(2)}
-                </p>
+                <div className="sm:ml-4 absolute top-1 right-0">
+                  <p className="font-semibold text-[#101828] text-[16px]">
+                    {currency === "BRL"
+                      ? "R$"
+                      : currency === "USD"
+                      ? "$"
+                      : currency === "CAD"
+                      ? "C$"
+                      : currency === "EUR"
+                      ? "€"
+                      : "$"}
+                    {Number.parseFloat(price || "0")}
+                  </p>
+                </div>
               </div>
             </div>
 
             <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6">
-              <div className="mb-3">
-                <h3 className="text-sm font-medium text-[14px] pb-[8px]">
+              <div className="mb-1">
+                <h3 className="text-sm font-medium text-[14px] pb-[8px] text-[#101828]">
                   Product description
                 </h3>
               </div>
@@ -472,7 +481,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
               />
             </div>
 
-            <div className="space-y-4 md:grid md:grid-cols-2 gap-x-4">
+            <div className="space-y-4 md:grid md:grid-cols-2 gap-x-4 mt-[30px] mb-[30px]">
               <div
                 className={`border rounded-lg p-4 cursor-pointer ${
                   isPaid
@@ -483,20 +492,21 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 text-[14px]">
+                    <h4 className="font-medium text-gray-900 text-[14px] mb-[5px]">
                       Paid
                     </h4>
                     <p className="text-normal text-[14px] text-gray-600">
-                      Charge for access to your product.
+                      Charge for your product
                     </p>
                   </div>
-                  <div className="mt-1">
+                  <div className="mt-1 relative">
                     <input
                       type="checkbox"
                       checked={isPaid}
-                      onChange={() => setIsPaid(true)}
-                      className="w-4 h-4 text-blue-600 rounded-full"
+                      onChange={() => setIsPaid(!isPaid)}
+                      className="appearance-none w-4 h-4 bg-white border border-gray-300 checked:bg-blue-600 rounded-full cursor-pointer"
                     />
+                    <span className="absolute right-1"></span>
                   </div>
                 </div>
               </div>
@@ -511,11 +521,11 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 text-[14px]">
+                    <h4 className="font-medium text-gray-900 text-[14px] mb-[5px]">
                       Free
                     </h4>
                     <p className="text-sm text-gray-500 text-[14px]">
-                      Offering free access to your product.
+                      Offer your product for free
                     </p>
                   </div>
                   <div className="mt-1">
@@ -523,200 +533,209 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                       type="checkbox"
                       checked={!isPaid}
                       onChange={() => setIsPaid(false)}
-                      className="w-4 h-4 text-blue-600 rounded-sm"
+                      className="appearance-none w-4 h-4 bg-white border border-gray-300 checked:bg-blue-600 rounded-full cursor-pointer"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-yellow-100 border border-[#F9C97C] rounded-lg p-4 flex items-start gap-3 col-span-2">
-                <div className="flex-shrink-0 text-amber-700 ">
-                  <ShieldAlert className="w-5 h-5 mt-2" />
+              <div className="bg-[#FEFCE8] border border-[#F9C97C] rounded-lg p-4 flex items-start gap-3 col-span-2">
+                <div className="flex-shrink-0 bg-[#FEFCE8] border border-[#FDEDD3] w-9 h-9 text-center flex items-center justify-center rounded-full mt-1 shadow-sm shadow-[0_-2px_4px_rgba(0,0,0,0.1)]">
+                  <svg
+                    className="w-5 h-5 "
+                    width="18"
+                    height="20"
+                    viewBox="0 0 18 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0 8.41363C0 5.21691 2.97904e-08 3.61855 0.377849 3.08077C0.754698 2.54398 2.2571 2.02919 5.26289 1.0006L5.83567 0.804678C7.40204 0.267893 8.18472 0 8.9964 0C9.80807 0 10.5908 0.267893 12.1571 0.804678L12.7299 1.0006C15.7357 2.02919 17.2381 2.54398 17.615 3.08077C17.9928 3.61855 17.9928 5.21791 17.9928 8.41363V9.987C17.9928 15.6227 13.7555 18.3587 11.0966 19.5192C10.3758 19.8341 10.016 19.992 8.9964 19.992C7.97681 19.992 7.61695 19.8341 6.89624 19.5192C4.2373 18.3577 0 15.6237 0 9.987V8.41363ZM8.9964 5.2479C9.19522 5.2479 9.38594 5.32689 9.52649 5.46748C9.66713 5.60808 9.7461 5.79877 9.7461 5.9976V9.996C9.7461 10.1948 9.66713 10.3855 9.52649 10.5261C9.38594 10.6667 9.19522 10.7457 8.9964 10.7457C8.79758 10.7457 8.60686 10.6667 8.46631 10.5261C8.32567 10.3855 8.2467 10.1948 8.2467 9.996V5.9976C8.2467 5.79877 8.32567 5.60808 8.46631 5.46748C8.60686 5.32689 8.79758 5.2479 8.9964 5.2479ZM8.9964 13.9944C9.26149 13.9944 9.51579 13.889 9.70322 13.7016C9.89064 13.5142 9.996 13.2599 9.996 12.9948C9.996 12.7297 9.89064 12.4754 9.70322 12.288C9.51579 12.1006 9.26149 11.9952 8.9964 11.9952C8.73131 11.9952 8.47701 12.1006 8.28958 12.288C8.10216 12.4754 7.9968 12.7297 7.9968 12.9948C7.9968 13.2599 8.10216 13.5142 8.28958 13.7016C8.47701 13.889 8.73131 13.9944 8.9964 13.9944Z"
+                      fill="#936316"
+                    />
+                  </svg>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-[#894B00] text-[14px]">
                     No Payment Method Connected
                   </h4>
                   <p className="text-normal text-[#A65F00] text-[14px]">
-                    Set up a payment method to start selling your product
+                    Set up a payment method to start selling products
                   </p>
                 </div>
-                <Link
-                  href={"https://www.google.com/"}
-                  className="cursor-pointer"
+                <a
+                  href="https://www.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer text-center"
                 >
-                  <button className="px-4 py-2 bg-[#FCEBC1] text-amber-800 rounded text-sm font-normal text-[13px] cursor-pointer h-[32px]">
+                  <button className="px-4 bg-[#FCEBC1] text-[#894B00] text-sm font-normal text-[13px] cursor-pointer h-[32px] rounded-[6px]">
                     Setup
                   </button>
-                </Link>
+                </a>
+              </div>
+            </div>
+            <div className="pb-[30px] ">
+              <div className="mt-2 bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6 ">
+                <div className="mb-1">
+                  <h3 className="text-sm font-medium text-[14px] pb-[8px] text-[#101828]">
+                    Price
+                  </h3>
+                </div>
+                <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-[#2563EB]">
+                  <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+                    {currency === "BRL"
+                      ? "R$"
+                      : currency === "USD"
+                      ? "$"
+                      : currency === "CAD"
+                      ? "C$"
+                      : currency === "EUR"
+                      ? "€"
+                      : "$"}
+                  </div>
+                  <input
+                    type="text"
+                    name="price"
+                    id="price"
+                    className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                    placeholder="0.00"
+                  />
+                  <div className="grid shrink-0 grid-cols-1 focus-within:relative">
+                    <select
+                      aria-label="Currency"
+                      id="currency"
+                      name="currency"
+                      value={currency}
+                      onChange={(e) => handleCurrencyChange(e.target.value)}
+                      className="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-7 pl-3 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-[#2563EB] sm:text-sm/6"
+                    >
+                      <option value="USD">USD</option>
+                      <option value="CAD">CAD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="BRL">BRL</option>
+                    </select>
+                    <svg
+                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      data-slot="icon"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <p className="text-[13px] text-[#6A7282] mt-2 ">
+                  Specify the product price and accepted payment currency.
+                </p>
               </div>
             </div>
 
-            {isPaid && (
-              <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6">
-                <div className="">
-                  <label
-                    htmlFor="price"
-                    className="block text-sm font-medium text-[14px] text-gray-900 pb-[8px]"
-                  >
-                    Price
-                  </label>
-
-                  <div className="mt-2 flex w-full pb-[8px]">
-                    <div className="flex w-full  items-center rounded-md border border-gray-300 bg-white px-3 h-9 focus-within:border-[#2563EB] focus-within:ring-1 focus-within:ring-[#2563EB]">
-                      <span className="text-gray-500 text-[14px] mr-1 select-none">
-                        {currency === "BRL"
-                          ? "R$"
-                          : currency === "USD"
-                          ? "US$"
-                          : currency === "CAD"
-                          ? "C$"
-                          : currency === "EUR"
-                          ? "€"
-                          : "$"}
-                      </span>
-                      <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        placeholder="0.00"
-                        onChange={(e) => setPrice(e.target.value)}
-                        className="block w-full border-0 p-0 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm "
-                      />
-                    </div>
-
-                    <div className="relative w-32">
-                      <select
-                        id="currency"
-                        name="currency"
-                        value={currency}
-                        onChange={(e) => handleCurrencyChange(e.target.value)}
-                        aria-label="Currency"
-                        className="appearance-none w-full rounded-md border border-gray-300 bg-white h-9 pl-3 pr-8 text-base text-gray-900 focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] focus:outline-none sm:text-sm"
-                      >
-                        <option value="USD">USD</option>
-                        <option value="CAD">CAD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="BRL">BRL</option>
-                      </select>
-                      <svg
-                        className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 size-4 text-gray-500"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  <p className="text-[13px] text-[#6A7282] mt-2">
-                    Specify the product price and accepted payment currency.
-                  </p>
+            <div className="pb-[30px] rounded-lg">
+              <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6 ">
+                <div className="mb-1">
+                  <h3 className="text-sm font-medium text-[14px] pb-[8px] text-[#101828]">
+                    Product
+                  </h3>
                 </div>
-              </div>
-            )}
 
-            <div className="bg-[#F3F4F6] border border-[#E5E6E7] rounded-lg p-4 sm:p-6">
-              <div className="pb-[8px]">
-                <h4 className="text-[14px] font-medium text-gray-700">
-                  Product
-                </h4>
-              </div>
-
-              <div
-                onClick={() => productFileInputRef.current?.click()}
-                className="mt-2 flex justify-center rounded-lg border z-100 border-dashed border-gray-900/25 px-6 py-10 cursor-pointer"
-              >
-                <div className="text-center">
-                  <Upload className="mx-auto h-12 w-12 text-gray-300" />
-                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                    <label className="relative cursor-pointer rounded-md ">
-                      <span className="text-[#2563EB] text-[14px] font-medium">
-                        Upload files
+                <div
+                  className="text-center p-10 mx-auto mt-4 border border-dashed rounded-[6px] border-gray-300 bg-white"
+                  onChange={handleProductFileUpload}
+                >
+                  <Upload className="mx-auto h-8 w-8 text-gray-300" />
+                  <div className=" flex text-sm  text-gray-600 justify-center mt-[15px]">
+                    <label className="relative cursor-pointer rounded-md  focus-within:outline-none ">
+                      <span
+                        className="font-medium text-[14px] text-[#2563EB] w-full mx-auto"
+                        onClick={() => productFileInputRef.current?.click()}
+                      >
+                        Upload a file
                       </span>
                     </label>
                     <p className="pl-1 font-normal text-[14px]">
                       or drag and drop
                     </p>
                   </div>
-                  <p className="text-[13px] font-normal leading-5 text-gray-600">
-                    PDF, DOCX, XLS up to 50MB each
+                  <p className="text-xs mt-[3px] text-gray-600 font-normal text-[13px]">
+                    pdf, docx, xls, word or excel up to 50mb
                   </p>
                 </div>
-              </div>
 
-              <input
-                ref={productFileInputRef}
-                type="file"
-                accept=".pdf,.docx,.xls,.xlsx,.doc"
-                onChange={handleProductFileUpload}
-                className="hidden"
-                multiple
-              />
+                <input
+                  ref={productFileInputRef}
+                  type="file"
+                  accept=".pdf,.docx,.xls,.xlsx,.doc"
+                  onChange={handleProductFileUpload}
+                  className="hidden"
+                  multiple
+                />
 
-              {uploadedFiles && (
-                <div className="pb-[8px]">
-                  <div className="w-full">
-                    <ul className="w-full mt-2">
-                      {uploadedFiles.map((file) => (
-                        <li
-                          key={file.id}
-                          className="w-full flex items-center justify-between py-4 px-4 text-sm border-b divide-y divide-gray-100 rounded-md border border-gray-200 h-[56px]"
-                        >
-                          <div className="flex items-center flex-1 min-w-0">
-                            <svg
-                              className="size-5 shrink-0 text-gray-400"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M15.621 4.379a3 3 0 0 0-4.242 0l-7 7a3 3 0 0 0 4.241 4.243h.001l.497-.5a.75.75 0 0 1 1.064 1.057l-.498.501-.002.002a4.5 4.5 0 0 1-6.364-6.364l7-7a4.5 4.5 0 0 1 6.368 6.36l-3.455 3.553A2.625 2.625 0 1 1 9.52 9.52l3.45-3.451a.75.75 0 1 1 1.061 1.06l-3.45 3.451a1.125 1.125 0 0 0 1.587 1.595l3.454-3.553a3 3 0 0 0 0-4.242Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <div className="ml-4 min-w-0 flex items-center gap-4">
-                              <p className="truncate font-medium">
-                                {file.name}
-                              </p>
-                              <p className="text-gray-400 text-sm truncate">
-                                {formatFileSize(file.size)}
-                              </p>
+                {uploadedFiles && (
+                  <div className="">
+                    <div className="w-full">
+                      <ul className="w-full mt-2">
+                        {uploadedFiles.map((file) => (
+                          <li
+                            key={file.id}
+                            className="w-full flex items-center justify-between py-4 px-4 text-sm border-b divide-y divide-gray-100 rounded-md border border-gray-200 h-[56px]"
+                          >
+                            <div className="flex items-center flex-1 min-w-0">
+                              <svg
+                                className="size-5 shrink-0 text-gray-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M15.621 4.379a3 3 0 0 0-4.242 0l-7 7a3 3 0 0 0 4.241 4.243h.001l.497-.5a.75.75 0 0 1 1.064 1.057l-.498.501-.002.002a4.5 4.5 0 0 1-6.364-6.364l7-7a4.5 4.5 0 0 1 6.368 6.36l-3.455 3.553A2.625 2.625 0 1 1 9.52 9.52l3.45-3.451a.75.75 0 1 1 1.061 1.06l-3.45 3.451a1.125 1.125 0 0 0 1.587 1.595l3.454-3.553a3 3 0 0 0 0-4.242Z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              <div className="ml-4 min-w-0 flex items-center gap-4">
+                                <p className="truncate font-medium">
+                                  {file.name}
+                                </p>
+                                <p className="text-gray-400 text-sm truncate">
+                                  {formatFileSize(file.size)}
+                                </p>
+                              </div>
                             </div>
-                          </div>
 
-                          <div className="flex items-center gap-3 pl-4">
-                            <a
-                              href={file.url}
-                              download={file.name}
-                              className="font-medium text-[#2563EB]"
-                            >
-                              Download
-                            </a>
-                            <button
-                              onClick={() => removeFile(file.id)}
-                              className="w-8 h-8 flex items-center justify-center font-medium hover:bg-red-200 rounded"
-                            >
-                              <Trash2 className="h-[18px] w-[18px] text-black hover:text-red-500" />
-                            </button>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                            <div className="flex items-center gap-3 pl-4">
+                              <a
+                                href={file.url}
+                                download={file.name}
+                                className="font-medium text-[#2563EB]"
+                              >
+                                Download
+                              </a>
+                              <button
+                                onClick={() => removeFile(file.id)}
+                                className="w-8 h-8 flex items-center justify-center font-medium hover:bg-red-200 rounded"
+                              >
+                                <Trash2 className="h-[18px] w-[18px] text-black hover:text-red-500" />
+                              </button>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              <p className="text-xs text-gray-500 mt-2">
-                on.link will automatically send these files to your customer
-                after purchase.
-              </p>
+                <p className="text-[13px] text-[#6A7282] mt-2 ">
+                  Specify the product price and accepted payment currency.
+                </p>
+              </div>
             </div>
 
             {orderBumps.length === 0 && (
@@ -943,7 +962,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                             }}
                           >
                             <div className="text-center">
-                              <Upload className="mx-auto h-8 w-8 text-gray-300" />
+                              <Upload className="mx-auto h-7 w-7 text-gray-300" />
                               <div className="mt-2 flex text-sm leading-6 text-gray-600">
                                 <label className="relative cursor-pointer rounded-md  focus-within:outline-none ">
                                   <span className="font-medium text-[14px] text-[#2563EB]">
@@ -955,7 +974,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                                 </p>
                               </div>
                               <p className="text-xs leading-5 text-gray-600 font-normal text-[13px]">
-                                PDF, DOCX, XLS up to 50MB
+                                pdf, docx, xls, word, excel up to 50MB
                               </p>
                             </div>
                           </div>
@@ -1024,7 +1043,7 @@ export default function CustomSheet({ isOpen, onClose }: CustomSheetProps) {
                             </div>
                           )}
 
-                          <p className="text-xs text-gray-500 pt-[8px]">
+                          <p className="text-[12px] text-gray-500 pt-[8px]">
                             on.link will automatically send these files to your
                             customer after purchase.
                           </p>
