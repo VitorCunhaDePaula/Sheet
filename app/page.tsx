@@ -1,4 +1,4 @@
-import SheetDemo from "@/Components/Button";
+import SheetDemo from "@/components/Button";
 
 export default function Home() {
   return (
